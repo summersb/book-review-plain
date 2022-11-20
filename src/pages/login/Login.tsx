@@ -1,28 +1,31 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
-import { auth, login } from '../../api/Firebase'
+import {useForm} from 'react-hook-form'
+import {Link} from 'react-router-dom'
+import {useAuth} from "../../contexts/AuthContext";
+
 
 export default function Login() {
-  const { register, handleSubmit } = useForm()
+  const {register, handleSubmit} = useForm()
+  const {login} = useAuth();
+
   const onSubmit = (d) => {
-    login(d.email, d.password)
+    login && login(d.email, d.password)
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          Email
-          <input {...register('email')} />
-        </label>
-        <label>
-          Password
-          <input type="password" {...register('password')} />
-        </label>
-        <input type="submit" value="Submit" />
+    <div className="signup">
+      <form onSubmit={handleSubmit(onSubmit)} method="POST">
+        <label aria-hidden="true">Login</label>
+        <input type="text" placeholder="email"
+               required {...register('email', {required: 'Email is required'})}></input>
+        <input type="password" placeholder="email"
+               required {...register('password', {required: 'Password required'})}></input>
+        <button>Login</button>
       </form>
-      <Link to="/signup">Signup</Link>
-    </>
+      <div className="text">Don't have an account create one&nbsp;</div>
+      <Link to="/signup">
+        <button>Signup</button>
+      </Link>
+    </div>
   )
 }
