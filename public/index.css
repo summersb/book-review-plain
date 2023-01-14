@@ -16,11 +16,9 @@ main {
   min-height: 100vh;
 }
 
-.signup, .login {
-}
-
 .nav {
   position: absolute;
+  display: flex;
   top: 0;
 }
 

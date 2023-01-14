@@ -13,7 +13,7 @@ export default function Signup() {
   const {signup} = useAuth()
   const password = useRef({})
   password.current = watch('password', '')
-  const onSubmit = (data) => {
+  const onSubmit = (data:any) => {
     console.log(data)
     signup && signup(data.email, data.password)
   }

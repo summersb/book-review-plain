@@ -6,9 +6,9 @@ import {useAuth} from "../../contexts/AuthContext";
 
 export default function Login() {
   const {register, handleSubmit} = useForm()
-  const {login} = useAuth();
+  const {login} = useAuth()
 
-  const onSubmit = (d) => {
+  const onSubmit = (d:any) => {
     login && login(d.email, d.password)
   }
 

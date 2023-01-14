@@ -5,11 +5,15 @@ import Login from '../login/Login'
 import Signup from '../signup/Signup'
 import Main from './Main'
 import NavBar from './NavBar'
+import NewBookReview from "../book/NewBookReview";
 
 interface AppProps {
 }
 
 function App({}: AppProps) {
+
+  console.log("env")
+
   return (
     <BrowserRouter>
       <AuthProvider>
@@ -23,6 +27,7 @@ function App({}: AppProps) {
             <Route path="/" element={<Main/>}></Route>
             <Route path="signup" element={<Signup/>}></Route>
             <Route path="login" element={<Login/>}></Route>
+            <Route path="newreview" element={<NewBookReview/>}></Route>
           </Routes>
         </main>
       </AuthProvider>

@@ -74,7 +74,7 @@ const AuthProvider = ({children}: any): JSX.Element => {
 
   useEffect(() => {
     return onAuthStateChanged(auth, user => {
-      setCurrentUser(user);
+      setCurrentUser(user===null?undefined:user);
       setLoading(false);
     })
   }, [])
