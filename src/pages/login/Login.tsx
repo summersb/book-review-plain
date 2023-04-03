@@ -2,18 +2,14 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import {Link, useNavigate} from 'react-router-dom'
 import {useAuth} from "../../contexts/AuthProvider";
-
-type UserType = {
-  email: string
-  password: string
-}
+import type {User} from "../../type";
 
 export default function Login() {
-  const {register, handleSubmit} = useForm<UserType>()
+  const {register, handleSubmit} = useForm<User>()
   const {login} = useAuth();
   const navigate = useNavigate();
 
-  const onSubmit = (d: UserType) => {
+  const onSubmit = (d: User) => {
     if (login) {
       login(d.email, d.password)
       .then(d => {
