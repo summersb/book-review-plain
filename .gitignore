@@ -1,6 +1,6 @@
 .snowpack
 build
 node_modules
-.env*
+.env.local
 .idea
 /book-review.iml

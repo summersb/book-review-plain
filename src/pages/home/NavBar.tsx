@@ -26,6 +26,9 @@ export default function NavBar() {
           </>
         )}
         <li>
+          <Link to="newreview">Add Review</Link>
+        </li>
+        <li>
           <Link to="login">Login</Link>
         </li>
       </ul>
