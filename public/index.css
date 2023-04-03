@@ -3,24 +3,20 @@
 }
 
 body {
-  font-family: 'Jost', sans-serif;
-  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+  /*background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);*/
 }
 
 main {
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /*justify-content: center;*/
+  /*align-items: center;*/
   min-height: 100vh;
 }
 
-.signup, .login {
-}
-
 .nav {
-  position: absolute;
+  /*position: absolute;*/
   top: 0;
 }
 
@@ -47,7 +43,9 @@ main {
   position: relative;
   width: 350px;
   height: 500px;
-  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+  justify-content: center;
+  align-items: center;
+  /*background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);*/
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 5px 20px 50px #000;
@@ -114,4 +112,9 @@ div.login {
 label.login {
   color: #573b8a;
   transform: scale(.6);
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 200px 1fr;
 }

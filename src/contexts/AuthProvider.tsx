@@ -26,10 +26,10 @@ const authContextDefaults: AuthContextType = {
   currentUser: undefined,
 }
 
-const AuthContext = React.createContext<AuthContextType>(authContextDefaults)
+const UserContext = React.createContext<AuthContextType>(authContextDefaults)
 
 const useAuth = () => {
-  return useContext(AuthContext)
+  return useContext(UserContext)
 }
 
 const AuthProvider = ({children}: any): JSX.Element => {
@@ -56,7 +56,7 @@ const AuthProvider = ({children}: any): JSX.Element => {
     if (currentUser) {
       return updateEmailFirebase(currentUser, email)
     }
-    return new Promise((res, rej) => {
+    return new Promise(() => {
         throw new Error("User not authenticate")
       }
     )
@@ -66,7 +66,7 @@ const AuthProvider = ({children}: any): JSX.Element => {
     if (currentUser) {
       return updatePasswordFirebase(currentUser, password)
     }
-    return new Promise((res, rej) => {
+    return new Promise(() => {
         throw new Error("User not authenticate")
       }
     )
@@ -90,10 +90,10 @@ const AuthProvider = ({children}: any): JSX.Element => {
   }
 
   return (
-    <AuthContext.Provider value={value}>
+    <UserContext.Provider value={value}>
       {!loading && children}
-    </AuthContext.Provider>
+    </UserContext.Provider>
   )
 }
 
-export {AuthProvider, useAuth}
+export {AuthProvider, useAuth, UserContext}

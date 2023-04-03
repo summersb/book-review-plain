@@ -1,15 +1,29 @@
 import React from 'react'
 import {useForm} from 'react-hook-form'
-import {Link} from 'react-router-dom'
-import {useAuth} from "../../contexts/AuthContext";
+import {Link, useNavigate} from 'react-router-dom'
+import {useAuth} from "../../contexts/AuthProvider";
 
+type UserType = {
+  email: string
+  password: string
+}
 
 export default function Login() {
-  const {register, handleSubmit} = useForm()
+  const {register, handleSubmit} = useForm<UserType>()
   const {login} = useAuth();
+  const navigate = useNavigate();
 
-  const onSubmit = (d) => {
-    login && login(d.email, d.password)
+  const onSubmit = (d: UserType) => {
+    if (login) {
+      login(d.email, d.password)
+      .then(d => {
+        console.log(d)
+        navigate("/")
+      })
+      .catch(err => console.log(err))
+    } else {
+      console.log("Missing login function");
+    }
   }
 
   return (

@@ -1,14 +1,13 @@
 import React, {useRef} from 'react'
 import {useForm} from 'react-hook-form'
 import {Link} from "react-router-dom";
-import {useAuth} from "../../contexts/AuthContext";
+import {useAuth} from "../../contexts/AuthProvider";
 
 export default function Signup() {
   const {
     register,
     handleSubmit,
     watch,
-    formState: {errors},
   } = useForm()
   const {signup} = useAuth()
   const password = useRef({})
