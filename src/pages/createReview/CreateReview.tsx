@@ -37,15 +37,15 @@ const CreateReview = (): JSX.Element => {
 
           <label aria-hidden="true">Book Type</label>
           <select {...register('bookType')}>
-            <option value="ebook">EBook</option>
-            <option value="audio">Audio</option>
-            <option value="print">Print</option>
+            <option value="EBook">EBook</option>
+            <option value="Audio">Audio</option>
+            <option value="Print">Print</option>
           </select>
 
           <label aria-hidden="true">Genre</label>
           <select required {...register('genre')}>
-            <option value="scifi">Science Fiction</option>
-            <option value="fantasy">Fantasy</option>
+            <option value="SciFi">Science Fiction</option>
+            <option value="Fantasy">Fantasy</option>
           </select>
 
           <label aria-hidden="true">Author</label>

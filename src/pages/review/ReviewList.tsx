@@ -12,10 +12,24 @@ const ReviewList = (): JSX.Element => {
   return (
     <div>
       List of reviews
-      <ul>
-        {reviewList && reviewList.docs.map(d => d.data()).map(d => <li>
-          <span>{d.title}</span> <span>{d.review}</span> <span>{d.genre}</span></li>)}
-      </ul>
+      <table>
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Title</th>
+          <th>Genre</th>
+        </tr>
+        </thead>
+        <tbody>
+        {reviewList && reviewList.docs.map(d => ({id: d.id, data: d.data()}))
+        .map(d => <tr>
+          <td>{d.id}</td>
+          <td>{d.data.title}</td>
+          <td>{d.data.genre}</td>
+        </tr>)
+        }
+        </tbody>
+      </table>
     </div>
   );
 };
