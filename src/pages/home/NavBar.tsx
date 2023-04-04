@@ -15,6 +15,9 @@ export default function NavBar() {
               <Link to="/review">Reviews</Link>
             </li>
             <li>
+              <Link to="/author">Authors</Link>
+            </li>
+            <li>
               <Link to="/createReview">Create a review</Link>
             </li>
             <li>
@@ -25,9 +28,6 @@ export default function NavBar() {
             </li>
           </>
         )}
-        <li>
-          <Link to="newreview">Add Review</Link>
-        </li>
         <li>
           <Link to="login">Login</Link>
         </li>

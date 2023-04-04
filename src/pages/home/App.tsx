@@ -10,6 +10,7 @@ import CreateReview from "../createReview/CreateReview";
 import Logout from "./Logout";
 import ReviewList from "../review/ReviewList";
 import CreateAuthor from "../createAuthor/CreateAuthor";
+import AuthorList from "../author/AuthorList";
 
 const queryClient = new QueryClient()
 
@@ -30,6 +31,7 @@ function App({}: AppProps) {
             <Routes>
               <Route path="/" element={<Main/>}></Route>
               <Route path="review" element={<ReviewList/>}></Route>
+              <Route path="author" element={<AuthorList/>}></Route>
               <Route path="createReview" element={<CreateReview/>}></Route>
               <Route path="createAuthor" element={<CreateAuthor/>}></Route>
               <Route path="signup" element={<Signup/>}></Route>

@@ -1,5 +1,6 @@
 import React from 'react'
+import ReviewList from "../review/ReviewList";
 
 export default function Main() {
-  return <div style={{width: '500px'}}>Book Review</div>
+  return <ReviewList/>
 }

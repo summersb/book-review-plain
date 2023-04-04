@@ -117,7 +117,12 @@ label.login {
   transform: scale(.6);
 }
 
-.form {
+form {
   display: grid;
   grid-template-columns: 200px 1fr;
+}
+
+button {
+  float: right;
+  width: 100%;
 }

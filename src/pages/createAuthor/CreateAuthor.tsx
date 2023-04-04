@@ -12,19 +12,22 @@ const CreateAuthor = (): JSX.Element => {
   }
 
   return (
-    <div className="form">
+    <div style={{display: "block"}}>
       <h3>Add Author</h3>
-      <form onSubmit={handleSubmit(onSubmit)} method="POST">
-        <label aria-hidden="true">First Name</label>
-        <input type="text" placeholder="name"
-               required {...register('firstName', {required: 'Name is required'})}></input><br/>
+      <div>
+        <form onSubmit={handleSubmit(onSubmit)} method="POST">
+          <label aria-hidden="true">First Name</label>
+          <input type="text" placeholder="name"
+                 required {...register('firstName', {required: 'Name is required'})}></input>
 
-        <label aria-hidden="true">Last Name</label>
-        <input type="text" placeholder="name"
-               required {...register('lastName', {required: 'Name is required'})}></input><br/>
+          <label aria-hidden="true">Last Name</label>
+          <input type="text" placeholder="name"
+                 required {...register('lastName', {required: 'Name is required'})}></input>
 
-        <button type="submit">Save</button>
-      </form>
+          <label></label>
+          <button type="submit">Save</button>
+        </form>
+      </div>
     </div>
   );
 };
