@@ -9,18 +9,16 @@ import {
   getFirestore,
   QuerySnapshot,
   setDoc
-} from "firebase/firestore";
-import type {Author, Book} from "../type";
-
-import.meta.env
+} from "firebase/firestore"
+import type {Author, Book} from "../type"
 
 const firebaseConfig = {
-  apiKey: __SNOWPACK_ENV__.SNOWPACK_PUBLIC_apiKey,
-  authDomain: __SNOWPACK_ENV__.SNOWPACK_PUBLIC_authDomain,
-  projectId: __SNOWPACK_ENV__.SNOWPACK_PUBLIC_projectId,
-  storageBucket: __SNOWPACK_ENV__.SNOWPACK_PUBLIC_storageBucket,
-  messagingSenderId: __SNOWPACK_ENV__.SNOWPACK_PUBLIC_messagingSenderId,
-  appId: __SNOWPACK_ENV__.SNOWPACK_PUBLIC_appId,
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 const app = initializeApp(firebaseConfig)

@@ -22,7 +22,7 @@ const AuthorList = (): JSX.Element => {
         </thead>
         <tbody>
         {reviewList && reviewList.docs.map(d => ({id: d.id, data: d.data()}))
-        .map(d => <tr>
+        .map(d => <tr key={d.id}>
           <td>{d.id}</td>
           <td>{d.data.firstName}</td>
           <td>{d.data.lastName}</td>
