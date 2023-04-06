@@ -16,7 +16,7 @@ export default function Login() {
         console.log(d)
         navigate("/")
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err.message))
     } else {
       console.log("Missing login function");
     }
