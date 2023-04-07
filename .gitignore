@@ -1,4 +1,5 @@
 .snowpack
+dist
 build
 node_modules
 .env.local
