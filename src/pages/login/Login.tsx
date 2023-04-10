@@ -1,6 +1,6 @@
 import React from 'react'
 import {useForm} from 'react-hook-form'
-import {Link, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import {useAuth} from "../../contexts/AuthProvider";
 import type {User} from "../../type";
 
@@ -32,10 +32,6 @@ export default function Login() {
                required {...register('password', {required: 'Password required'})}></input>
         <button>Login</button>
       </form>
-      <div className="text">Don't have an account create one&nbsp;</div>
-      <Link to="/signup">
-        <button>Signup</button>
-      </Link>
     </div>
   )
 }

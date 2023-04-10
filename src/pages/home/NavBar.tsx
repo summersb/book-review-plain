@@ -28,9 +28,16 @@ export default function NavBar() {
             </li>
           </>
         )}
-        <li>
-          <Link to="login">Login</Link>
-        </li>
+        {user.currentUser == null && (
+          <>
+            <li>
+              <Link to="login">Login</Link>
+            </li>
+            <li>
+              <Link to="signup">Signup</Link>
+            </li>
+          </>
+        )}
       </ul>
     </div>
   )

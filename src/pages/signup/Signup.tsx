@@ -1,6 +1,5 @@
 import React, {useRef} from 'react'
 import {useForm} from 'react-hook-form'
-import {Link} from "react-router-dom";
 import {useAuth} from "../../contexts/AuthProvider";
 
 export default function Signup() {
@@ -12,7 +11,7 @@ export default function Signup() {
   const {signup} = useAuth()
   const password = useRef({})
   password.current = watch('password', '')
-  const onSubmit = (data:any) => {
+  const onSubmit = (data: any) => {
     console.log(data)
     signup && signup(data.email, data.password)
   }
@@ -35,11 +34,6 @@ export default function Signup() {
         })}></input>
         <button>Sign up</button>
       </form>
-
-      <div className="text">Already have an account?</div>
-      <Link to="/login">
-        <button>Login</button>
-      </Link>
     </div>
   )
 }
