@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react'
 import {useForm} from 'react-hook-form'
 import {useNavigate} from 'react-router-dom'
-import {getRedirectResult, GoogleAuthProvider, signInWithRedirect} from 'firebase/auth';
-import {useAuth} from "../../contexts/AuthProvider";
-import type {User} from "../../type";
-import {auth} from "../../api/Firebase";
+import {getRedirectResult, GoogleAuthProvider, signInWithRedirect} from 'firebase/auth'
+import {useAuth} from "../../contexts/AuthProvider"
+import type {User} from "../../type"
+import {auth} from "../../api/Firebase"
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -12,6 +12,11 @@ export default function Login() {
   const {register, handleSubmit} = useForm<User>()
   const {login} = useAuth();
   const navigate = useNavigate();
+
+  const signInGoogle = (e: any): void => {
+    e.preventDefault()
+    signInWithRedirect(auth, googleProvider)
+  }
 
   useEffect(() => {
       getRedirectResult(auth)
@@ -25,7 +30,6 @@ export default function Login() {
     }, []
   )
 
-
   const onSubmit = (d: User) => {
     if (login) {
       login(d.email, d.password)
@@ -36,11 +40,6 @@ export default function Login() {
     } else {
       console.log("Missing login function");
     }
-  }
-
-  const signInGoogle = (e: any): void => {
-    e.preventDefault()
-    signInWithRedirect(auth, googleProvider)
   }
 
   return (
@@ -54,7 +53,7 @@ export default function Login() {
         <button>Login</button>
       </form>
       <br/>
-      <div><a href="/" onClick={signInGoogle}>Sign in with Google</a></div>
+      <div><a href="#" onClick={signInGoogle}>Sign in with Google</a></div>
     </div>
   )
 }
