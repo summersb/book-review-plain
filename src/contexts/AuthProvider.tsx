@@ -3,6 +3,7 @@ import {useContext, useEffect, useState} from 'react';
 import type {UserCredential} from 'firebase/auth'
 import {
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   onAuthStateChanged,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
@@ -16,11 +17,14 @@ type AuthContextType = {
   currentUser: User | undefined
   signup?: (email: string, password: string) => Promise<UserCredential>
   login?: (email: string, password: string) => Promise<UserCredential>
+  loginGoogle?: () => Promise<User>
   logout?: () => Promise<void>
   resetPassword?: (email: string) => Promise<void>
   updateEmail?: (email: string) => Promise<void>
   updatePassword?: (password: string) => Promise<void>
 }
+
+const googleProvider = new GoogleAuthProvider();
 
 const authContextDefaults: AuthContextType = {
   currentUser: undefined,
@@ -74,7 +78,7 @@ const AuthProvider = ({children}: any): JSX.Element => {
 
   useEffect(() => {
     return onAuthStateChanged(auth, user => {
-      setCurrentUser(user===null?undefined:user);
+      setCurrentUser(user === null ? undefined : user);
       setLoading(false);
     })
   }, [])
