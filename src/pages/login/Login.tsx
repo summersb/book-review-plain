@@ -5,6 +5,7 @@ import {getRedirectResult, GoogleAuthProvider, signInWithRedirect} from 'firebas
 import {useAuth} from "../../contexts/AuthProvider"
 import type {User} from "../../type"
 import {auth} from "../../api/Firebase"
+import '../../index.css'
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -48,7 +49,7 @@ export default function Login() {
         <label aria-hidden="true">Login</label>
         <input type="text" placeholder="email"
                required {...register('email', {required: 'Email is required'})}></input>
-        <input type="password" placeholder="email"
+        <input type="password" placeholder="password"
                required {...register('password', {required: 'Password required'})}></input>
         <button>Login</button>
       </form>

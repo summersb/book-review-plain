@@ -12,6 +12,8 @@ import {
 } from "firebase/firestore"
 import type {Author, Book} from "../type"
 
+import {initializeAppCheck, ReCaptchaV3Provider} from 'firebase/app-check'
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_apiKey,
   authDomain: import.meta.env.VITE_authDomain,
@@ -23,6 +25,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 const auth = getAuth()
+
+const appCheck = initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider('6Lc2-IElAAAAAIdvORsqWdBkYkOxQxo_1cT9O0Op'),
+  isTokenAutoRefreshEnabled: true
+})
 
 const db = getFirestore(app);
 
@@ -47,8 +54,5 @@ const saveBook = (book: Book) => {
   })
 }
 
-// const docRef = doc(db, 'Book')
-// const doc = await getDoc(docRef)
-
-export {auth, getAuthor, getAuthorBooks, saveAuthor, saveBook}
+export {auth, appCheck, getAuthor, getAuthorBooks, saveAuthor, saveBook}
 export default app

@@ -8,7 +8,6 @@ const CreateAuthor = (): JSX.Element => {
 
   const onSubmit = (d: Author) => {
     saveAuthor(d);
-    // d.name
   }
 
   return (
