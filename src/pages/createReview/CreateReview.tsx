@@ -6,7 +6,7 @@ import type {Book} from "../../type";
 import {getAuthor, saveBook} from "../../api/Firebase";
 
 const CreateReview = (): JSX.Element => {
-  const {register, handleSubmit} = useForm<Book>()
+  const {register, formState: {errors}, handleSubmit} = useForm<Book>()
 
   const {data: snapshot} = useQuery({
     queryKey: ["CreateReview"],
@@ -14,9 +14,11 @@ const CreateReview = (): JSX.Element => {
   })
 
   const onSubmit = (b: Book) => {
+    console.log("Saving", b)
     saveBook(b);
   }
 
+  console.log(errors)
   return (
     <div style={{display: "block"}}>
       <h3>Create Review</h3>
@@ -24,22 +26,21 @@ const CreateReview = (): JSX.Element => {
         <form onSubmit={handleSubmit(onSubmit)} method="POST">
           <label aria-hidden="true">Title</label>
           <input type="text" placeholder="title"
-                 required {...register('title', {required: 'Title is required'})}></input>
+                 required {...register('title', {required: true})} />
+          {errors?.title && <p key="title">{errors.title.message}</p>}
 
           <label aria-hidden="true">Series</label>
           <input type="text" {...register('series')}></input>
+          {errors?.series && <p key="series">{errors.series.message}</p>}
 
           <label aria-hidden="true">Number</label>
-          <input type="number"{...register('number')}></input>
-
-          <label aria-hidden="true">Source</label>
-          <input type="number"{...register('source')}></input>
+          <input type="number" {...register('number')}></input>
 
           <label aria-hidden="true">Book Type</label>
           <select {...register('bookType')}>
-            <option value="EBook">EBook</option>
-            <option value="Audio">Audio</option>
-            <option value="Print">Print</option>
+            <option key="ebook" value="EBook">EBook</option>
+            <option key="audio" value="Audio">Audio</option>
+            <option key="print" value="Print">Print</option>
           </select>
 
           <label aria-hidden="true">Genre</label>

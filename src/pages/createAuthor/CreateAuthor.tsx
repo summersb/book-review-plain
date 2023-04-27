@@ -4,7 +4,7 @@ import type {Author} from "../../type";
 import {saveAuthor} from "../../api/Firebase";
 
 const CreateAuthor = (): JSX.Element => {
-  const {register, handleSubmit} = useForm<Author>()
+  const {register, handleSubmit, formState: {errors}} = useForm<Author>()
 
   const onSubmit = (d: Author) => {
     saveAuthor(d);
@@ -17,11 +17,11 @@ const CreateAuthor = (): JSX.Element => {
         <form onSubmit={handleSubmit(onSubmit)} method="POST">
           <label aria-hidden="true">First Name</label>
           <input type="text" placeholder="name"
-                 required {...register('firstName', {required: 'Name is required'})}></input>
+                 required {...register('firstName', {required: true})}></input>
 
           <label aria-hidden="true">Last Name</label>
           <input type="text" placeholder="name"
-                 required {...register('lastName', {required: 'Name is required'})}></input>
+                 required {...register('lastName', {required: true})}></input>
 
           <label></label>
           <button type="submit">Save</button>
