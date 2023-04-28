@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useNavigate} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import {useQuery} from "@tanstack/react-query";
 import type {DocumentData} from "firebase/firestore";
@@ -7,6 +8,7 @@ import {getAuthor, saveBook} from "../../api/Firebase";
 
 const CreateReview = (): JSX.Element => {
   const {register, formState: {errors}, handleSubmit} = useForm<Book>()
+  const navigate = useNavigate();
 
   const {data: snapshot} = useQuery({
     queryKey: ["CreateReview"],
@@ -14,8 +16,10 @@ const CreateReview = (): JSX.Element => {
   })
 
   const onSubmit = (b: Book) => {
-    console.log("Saving", b)
-    saveBook(b);
+    saveBook(b)
+    .then(() => {
+      navigate({pathname: "/review"})
+    })
   }
 
   console.log(errors)
@@ -45,14 +49,16 @@ const CreateReview = (): JSX.Element => {
 
           <label aria-hidden="true">Genre</label>
           <select required {...register('genre')}>
+            <option value="" disabled selected>Select an genre</option>
             <option value="SciFi">Science Fiction</option>
             <option value="Fantasy">Fantasy</option>
           </select>
 
           <label aria-hidden="true">Author</label>
           <select required {...register('authorId')}>
-            {snapshot && snapshot.docs.map((doc: DocumentData) => <option
-              value={doc.id}>{doc.data().firstName} {doc.data().lastName}</option>)}
+            <option value="" disabled selected>Select an author</option>
+            {snapshot && snapshot.docs.map((doc: DocumentData, idx: number) => <option
+              key={idx} value={doc.id}>{doc.data().firstName} {doc.data().lastName}</option>)}
           </select>
 
           <label aria-hidden="true">Review with out spoilers</label>

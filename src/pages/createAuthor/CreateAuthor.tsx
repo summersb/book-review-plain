@@ -1,13 +1,18 @@
-import * as React from 'react';
-import {useForm} from "react-hook-form";
-import type {Author} from "../../type";
-import {saveAuthor} from "../../api/Firebase";
+import * as React from 'react'
+import {useForm} from "react-hook-form"
+import {useNavigate} from 'react-router-dom'
+import type {Author} from "../../type"
+import {saveAuthor} from "../../api/Firebase"
 
 const CreateAuthor = (): JSX.Element => {
   const {register, handleSubmit, formState: {errors}} = useForm<Author>()
+  const navigate = useNavigate();
 
   const onSubmit = (d: Author) => {
-    saveAuthor(d);
+    saveAuthor(d)
+    .then(() => {
+      navigate({pathname: "/author"})
+    })
   }
 
   return (

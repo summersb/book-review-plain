@@ -3,8 +3,10 @@ import {initializeApp} from 'firebase/app'
 import {
   collection,
   collectionGroup,
+  deleteDoc,
   doc,
   DocumentData,
+  DocumentReference,
   getDocs,
   getFirestore,
   QuerySnapshot,
@@ -40,19 +42,26 @@ const getAuthorBooks = () => {
   return getDocs(collectionGroup(db, 'Book'))
 }
 
-const saveAuthor = (author: Author) => {
+const saveAuthor = (author: Author): Promise<void> => {
   const col = collection(db, 'Author')
-  setDoc(doc(col), {
+  return setDoc(doc(col), {
     ...author
   })
 }
 
-const saveBook = (book: Book) => {
+const saveBook = (book: Book): Promise<void> => {
   const authorBookCollection = collection(db, `Author/${book.authorId}/Book`)
-  setDoc(doc(authorBookCollection), {
+  return setDoc(doc(authorBookCollection), {
     ...book
   })
 }
 
-export {auth, appCheck, getAuthor, getAuthorBooks, saveAuthor, saveBook}
+const deleteBook = (book: DocumentReference<DocumentData>): Promise<void> => {
+  return deleteDoc(book)
+}
+
+const deleteAuthor = (author: DocumentReference<DocumentData>): Promise<void> => {
+  return deleteDoc(author)
+}
+export {auth, appCheck, getAuthor, getAuthorBooks, saveAuthor, saveBook, deleteBook, deleteAuthor}
 export default app
