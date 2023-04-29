@@ -1,7 +1,5 @@
-.snowpack
 dist
-build
 node_modules
-.env.local
+.env.*
 .idea
 /book-review.iml

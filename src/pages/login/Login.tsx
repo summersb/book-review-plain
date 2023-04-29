@@ -17,6 +17,9 @@ export default function Login() {
   const signInGoogle = (e: any): void => {
     e.preventDefault()
     signInWithRedirect(auth, googleProvider)
+      .catch((error:Error) => {
+          console.log("google signin", error.message)
+      })
   }
 
   useEffect(() => {
@@ -25,8 +28,6 @@ export default function Login() {
         if (result !== null && result.user) {
           navigate("/")
         }
-        // const cred = GoogleAuthProvider.credentialFromResult(result);
-        // const token = cred.accessToken;
       }).catch(e => alert(e.message))
     }, []
   )
@@ -37,7 +38,7 @@ export default function Login() {
       .then(() => {
         navigate("/")
       })
-      .catch(err => console.log(err.message))
+      .catch(err => console.log("form signin", err.message))
     } else {
       console.log("Missing login function");
     }
